@@ -5,7 +5,7 @@ import { App } from './App';
 
 createServer({
     routes() { // definindo quais rotas vai ter na api ficticia
-      this.namespace = 'api';
+      this.namespace = 'api'; // dizendo pro mirage que todas chamadas a api q será feita, vai estar apartir de '/api', será direcionada para o miragejs
 
       // fazendo requisição get para rota 'transactions', obs: não precisa colocar 'api'
       this.get('/transactions', () => {
