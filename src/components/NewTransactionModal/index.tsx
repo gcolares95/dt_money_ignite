@@ -4,7 +4,7 @@ import { Container, TransactionTypeContainer, RadioBox } from './styles';
 import closeImg from '../../assets/close.svg';
 import incomeImg from '../../assets/income.svg';
 import outComeImg from '../../assets/outcome.svg';
-import { useState } from 'react';
+import { FormEvent, useState } from 'react';
 
 interface NewTransactionModalProps {
   isOpen: boolean;  // props -> se o Modal está aberto ou não
@@ -12,7 +12,22 @@ interface NewTransactionModalProps {
 }
 
 export function NewTransactionModal({ isOpen, onRequestClose }: NewTransactionModalProps) {
+  const [title, setTitle] = useState('');
+  const [value, setValue] = useState(0);
+  const [category, setCategory] = useState('');
   const [type, setType] = useState('deposit');
+
+  // handle é uma função que vem atráves de uma ação do usuário
+  function handleCreateNewTransaction(event: FormEvent) { 
+    event.preventDefault();
+
+    console.log({
+      title,
+      value,
+      category,
+      type
+    })
+  }
   
   return (
     <Modal
@@ -30,16 +45,20 @@ export function NewTransactionModal({ isOpen, onRequestClose }: NewTransactionMo
         <img src={closeImg} alt="Fechar modal" />
       </button>
 
-      <Container>
+      <Container onSubmit={handleCreateNewTransaction}>
         <h2>Cadastrar Transação</h2>
 
         <input 
-          placeholder="Título" 
+          placeholder="Título"
+          value={title}
+          onChange={event => setTitle(event.target.value)}
         />
 
         <input 
           type="number"
           placeholder="valor"
+          value={value}
+          onChange={event => setValue(Number(event.target.value))}
         />
 
         <TransactionTypeContainer>
@@ -65,6 +84,8 @@ export function NewTransactionModal({ isOpen, onRequestClose }: NewTransactionMo
         </TransactionTypeContainer>
        <input 
           placeholder="Categoria"
+          value={category}
+          onChange={event => setCategory(event.target.value)}
         />
 
         <button type="submit">
