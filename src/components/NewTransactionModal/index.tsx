@@ -24,14 +24,21 @@ export function NewTransactionModal({ isOpen, onRequestClose }: NewTransactionMo
   const [type, setType] = useState('deposit');
 
   // handle é uma função que vem atráves de uma ação do usuário
-  function handleCreateNewTransaction(event: FormEvent) { 
+  async function handleCreateNewTransaction(event: FormEvent) { 
     event.preventDefault();
-    createTransaction({
+    await createTransaction({
       title,
       amount,
       category,
       type
     });
+
+    setTitle('');
+    setAmount(0);
+    setCategory('');
+    setType('deposit');
+
+    onRequestClose();
   }
   
   return (
