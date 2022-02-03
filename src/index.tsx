@@ -47,7 +47,7 @@ createServer({
         const data = JSON.parse(request.requestBody) // request.requestBody, por padrão os dados vem em texto, como estamos enviando um json (objeto), precisamos converter o dado de texto para objeto no js.
         
         // transaction -> model que eu quero inserir, data -> os dados
-        return schema.create('transaciton', data); /// schema -> banco de dados  
+        return schema.create('transaction', data); /// schema -> banco de dados  
       })
     }
 })
