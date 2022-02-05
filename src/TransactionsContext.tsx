@@ -1,6 +1,7 @@
 import { createContext, ReactNode, useEffect, useState } from 'react';
 import { api } from './services/api';
 
+// Interfaces
 interface Transaction {
   id: number;
   title: string;
@@ -23,6 +24,7 @@ interface TransactionsContextData {
   createTransaction: (transaction: TransactionInput) => Promise<void>;
 }
 
+// Criação de contexto
 export const TransactionsContext = createContext<TransactionsContextData>(
   {} as TransactionsContextData
 );

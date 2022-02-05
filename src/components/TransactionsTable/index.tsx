@@ -20,7 +20,7 @@ export function TransactionsTable() {
           {transactions.map((transaction) => (
               <tr key={transaction.id}>
                 <td>{transaction.title}</td>
-                <td className={transaction.createdAt}>
+                <td className={transaction.type}>
                   {new Intl.NumberFormat('pt-BR', {
                     style: 'currency',
                     currency: 'BRL'
